@@ -1,35 +1,9 @@
-.assets {
-  opacity: 0;
-}
-
-.font-boldromain {
-  font: normal 18px/18px "CanalBoldRomain";
-}
-.font-bolditalique {
-  font: normal 18px/18px "CanalBoldItalique";
-}
-.font-demiromain {
-  font: normal 18px/18px "CanalDR";
-}
-.font-verdana {
-  font: normal 18px/18px "Verdana";
-}
-
-.wakeup {
-  background-image: url("/img/wakeup.jpg");
-}
-.image-zaplist-bg {
-  background-image: url("/img/zaplist-bg.png");
-}
-.image-thumbnail {
-  background-image: url("/img/thumbnail.png");
-}
-.image-landscape {
-  background-image: url("/img/landscape.png");
-}
-.image-volume-ring {
-  background-image: url("/img/volume-ring.png");
-}
-.image-spinner {
-  background-image: url("/img/spinner.gif");
+body {
+  width: 1280px;
+  height: 720px;
+  overflow: hidden;
+  background-color: #252525;
+  font-family: 'Track';
+  font-size: 20px;
+  -webkit-font-smoothing: antialiased;
 }

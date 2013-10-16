@@ -1,0 +1,26 @@
+<div class="branch ng-scope" ng-repeat="branch in branches">
+      <h2 class="branch-title" bind-markdown="branch.title">master</h2>
+
+      <!-- ngRepeat: card in branch.cards --><card ng-repeat="card in branch.cards" card-data="card" class="ng-isolate-scope ng-scope"><div class="card build-card build-card-ok" ng-class="data.classes">
+  <!-- ngIf: data.graph -->
+  <div class="card-content">
+    <h3 class="card-title" bind-markdown="data.title">build</h3>
+    <div class="card-value ng-binding">ok</div>
+    <!-- ngIf: data.note --><p ng-if="data.note" class="card-note ng-scope" bind-markdown="data.note"><strong>1 weeks</strong> since the last failure</p>
+  </div>
+</div></card><card ng-repeat="card in branch.cards" card-data="card" class="ng-isolate-scope ng-scope"><div class="card google3-card" ng-class="data.classes">
+  <!-- ngIf: data.graph -->
+  <div class="card-content">
+    <h3 class="card-title" bind-markdown="data.title"><strong>google</strong>3</h3>
+    <div class="card-value ng-binding">1</div>
+    <!-- ngIf: data.note --><p ng-if="data.note" class="card-note ng-scope" bind-markdown="data.note">shas behind</p>
+  </div>
+</div></card><card ng-repeat="card in branch.cards" card-data="card" class="ng-isolate-scope ng-scope"><div class="card sha-count-card" ng-class="data.classes">
+  <!-- ngIf: data.graph -->
+  <div class="card-content">
+    <h3 class="card-title" bind-markdown="data.title">there have been</h3>
+    <div class="card-value ng-binding">4</div>
+    <!-- ngIf: data.note --><p ng-if="data.note" class="card-note ng-scope" bind-markdown="data.note">shas since the last release</p>
+  </div>
+</div></card>
+    </div>
