@@ -1,4 +1,6 @@
 node_modules
 /tmp
 *.log
-/public
+/public/css/
+/public/js/
+/public/index.html
