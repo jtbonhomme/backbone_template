@@ -1,0 +1,33 @@
+{
+  "browser": true,
+  "camelcase": true,
+  "curly": true,
+  "devel": true,
+  "eqeqeq": true,
+  "noarg": true,
+  "debug": true,
+  "trailing": true,
+  "strict": true,
+  "undef": true,
+  "es5": true,
+  "expr": true,
+  "newcap": false,
+  "validthis": true,
+  "predef": [
+    "LOGGER",
+    "Application", "Control", "Keys",
+    "extend", "debounce",
+    "clock", "at", "nextTick", "bind",
+    "Manager", "Stack",
+    "Dialog", "Pager", "List",
+    "ConfigPage", "ConfigDialog",
+    "Nav", "NavItem", "NavCheckbox", "NavScrollDown",
+    "Thumbnail", "VideoThumbnail", "CatchUpThumbnail", "StopThumbnail", "Mosaic",
+    "Model", "Collection",
+    "Form", "InlineInputs", "InputText", "InputKeyboard", "Radio", "Checkbox", "ScrollDown", "ProgressInput", "Button",
+    "EventEmitter", "Promise", "ajax",
+    "renderTemplate", "JST",
+    "collecte",
+    "describe","before","beforeEach","after","afterEach","it","expect"
+  ]
+}
