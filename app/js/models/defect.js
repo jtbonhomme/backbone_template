@@ -2,7 +2,7 @@
 //= require libs/collection
 //= require libs/ajax
 
-(function(models, global) {
+(function(global) {
   'use strict';
 
   var
@@ -10,7 +10,7 @@
      * Logger for defects model
      */
     LOG = LOGGER('defects');
-
+/*
   var Defect = Model.extend({
     idParam: 'defectId'
   });
@@ -24,5 +24,5 @@
   });
 
   models.Defects = Defects;
-
-})(this.Models, this);
+*/
+})( this);

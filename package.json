@@ -24,8 +24,9 @@
     "grunt-mincer": "~0.3.1",
     "grunt-shell": "~0.2.2",
     "grunt-wording": "~0.1.6",
-    "backbone": ">=1.0",
-    "underscore": ">=1.5",
+    "jquery": "~1.8.3",
+    "underscore": "~1.4.3",
+    "backbone": "~1.0.0",
     "matchdep": "~0.1.2"
   }
 }

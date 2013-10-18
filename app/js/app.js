@@ -1,34 +1,23 @@
 // mincer directives processor are listed bellow
-//
 //= require libs/template
 //
-// require_tree controls
 
 /**
- * App is the global namespace for the application
- *
- * @module global
- * @class App
+ * Entry point of the application
+ * Creates a new app binded with 'main' div, intialize (app.init) it, and 
+ * start it (app.boot)
  */
-(function(global, models, controls) {
+
+(function(global) {
   'use strict';
 
   var LOG = LOGGER('app');
 
-  /**
-   * @constructor
-   */
-  function App(el) {
-    LOG('::App::');
-
-    Application.call(this, el);
+  var app = {
 
      // Object containing all the singletons model
      // shared by all controls.
-    this.data = {};
-  }
-
-  extend(App.prototype, Application.prototype, {
+    data: {},
 
     /**
      * Instantiate models in the `data` namespace.
@@ -38,10 +27,6 @@
      */
     createModels: function() {
       LOG('::createModels::');
-
-      this.data.defects         = new (models.Defects)();
-
-      LOG('models created');
       return this;
     },
 
@@ -84,13 +69,13 @@
      */
     fetch: function() {
       LOG('::fetch::');
-      return Promise.when(
+/*      return Promise.when(
         // static models
         Promise.lazy(this.data.defects.fetch())
       )
         .fail(function() {
           console.error('Error while fetching application data');
-        });
+        });*/
     },
 
     /**
@@ -127,9 +112,25 @@
 
       return this;
     }
+  };
 
-  });
+  // Instantiate the main application
+  // Export main application as a global
+  // Start the collecte tranport
+  function createApp() {
+    LOG('::createApp::');
+    var el = document.getElementById('main');
+    app.init(el);
+  }
 
-  global.App = App;
+  function clean() {
+    LOG('::clean::');
+    document.removeEventListener('DOMContentLoaded', createApp);
+    document.removeEventListener('DOMContentLoaded', clean);
+  }
 
-})(this, this.Models, this.Controls);
+  // create application on DOM content loaded
+  document.addEventListener('DOMContentLoaded', createApp, false);
+  document.addEventListener('DOMContentLoaded', clean, false);
+
+})(this);

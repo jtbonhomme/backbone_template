@@ -146,6 +146,8 @@ module.exports = function(grunt) {
       js: {
         src: [
           '<%= dirs.node %>backbone/backbone.js',
+          '<%= dirs.node %>underscore/backbone.js',
+          '<%= dirs.node %>jquery/lib/node-jquery.js',
           '<%= mince.dist.dest %>',
           '<%= dirs.tmp %>jst.js'
         ],

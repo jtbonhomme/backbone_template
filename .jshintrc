@@ -14,20 +14,10 @@
   "newcap": false,
   "validthis": true,
   "predef": [
-    "LOGGER",
-    "Application", "Control", "Keys",
-    "extend", "debounce",
-    "clock", "at", "nextTick", "bind",
-    "Manager", "Stack",
-    "Dialog", "Pager", "List",
-    "ConfigPage", "ConfigDialog",
-    "Nav", "NavItem", "NavCheckbox", "NavScrollDown",
-    "Thumbnail", "VideoThumbnail", "CatchUpThumbnail", "StopThumbnail", "Mosaic",
+    "LOGGER", "Application",
     "Model", "Collection",
-    "Form", "InlineInputs", "InputText", "InputKeyboard", "Radio", "Checkbox", "ScrollDown", "ProgressInput", "Button",
-    "EventEmitter", "Promise", "ajax",
+    "Promise", 
     "renderTemplate", "JST",
-    "collecte",
-    "describe","before","beforeEach","after","afterEach","it","expect"
+    "Backbone","Underscore","JQuery"
   ]
 }
