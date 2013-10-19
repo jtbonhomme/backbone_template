@@ -58,9 +58,9 @@ module.exports = function(grunt) {
   // Shell logging function
   function logShell(err, stdout, stderr, cb) {
     if (err) {
-      grunt.log.error('Command failed ' + HOST.red + ' on ' + new Date());
+      //grunt.log.error('Command failed ' + HOST.red + ' on ' + new Date());
     } else {
-      grunt.log.ok('Command executed ' + HOST.green + ' on ' + new Date());
+      //grunt.log.ok('Command executed ' + HOST.green + ' on ' + new Date());
     }
     cb();
   }
@@ -75,6 +75,7 @@ module.exports = function(grunt) {
       node:     'node_modules/',
       app:     'app/',
       js:      'app/js/',
+      vendors: 'app/vendors/',
       css:     'app/css/',
       tmp:     'tmp/',
       tpl:     'app/templates/',
@@ -105,6 +106,12 @@ module.exports = function(grunt) {
         expand: true,
         src: ['<%= dirs.js %><%= files.js %>'],
         dest: '<%= dirs.tmp %>'
+      },
+      vendors: {
+        expand: true,
+        flatten: true, // do not copy dir hierarchy, copy all js files directly under dest:
+        src: ['<%= dirs.vendors %><%= files.js %>'],
+        dest: '<%= dirs.public %>js'
       }
     },
 
@@ -163,8 +170,8 @@ module.exports = function(grunt) {
 
     jshint: {
       files: [
-        'grunt.js',
-        '<%= dirs.app %><%= files.js %>'
+        'Gruntfile.js',
+        '<%= dirs.js %><%= files.js %>'
       ],
       options: {
         jshintrc: '.jshintrc'
@@ -263,7 +270,7 @@ module.exports = function(grunt) {
     grunt.log.ok();
   });
 
-  var buildJS  = ['copy:js', 'mince', 'jst', 'concat:js', 'env', (LOGGER ? 'logger' : 'nologger')];
+  var buildJS  = ['copy:js', 'copy:vendors', 'mince', 'jst', 'concat:js', 'env', (LOGGER ? 'logger' : 'nologger')];
   var buildAll = _.compact([(lint && 'jshint'), 'clean:all', 'build:js', 'build:css', 'index', 'clean:tmp']);
 
   grunt.registerTask('build:css',   'Builds the css',          ['concat:css']);
