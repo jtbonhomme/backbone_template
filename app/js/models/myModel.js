@@ -8,12 +8,12 @@
      */
      LOG = LOGGER('MyModel');
 
-  var MyModel = Backbone.Model.extend({
+   var MyModel = Backbone.Model.extend({
     initialize: function(){
       LOG('::initialize::');
     }
   });
 
-  models.MyModel = MyModel;
+   models.MyModel = MyModel;
 
-})(this, this.Models);
+ })(this, this.Models);

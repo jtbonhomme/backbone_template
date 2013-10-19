@@ -1,18 +1,28 @@
 
-(function(global) {
+(function(global, views) {
 	'use strict';
 
-	var LOG = LOGGER('IndexView');
+	var
+    /*
+     * Logger for my views
+     */
+     LOG = LOGGER('IndexView');
 
-	var IndexView = Backbone.View.extend({
+  var IndexView = Backbone.View.extend({
 
-		render: function() {
-			LOG('::render::');
-			this.el.innerHTML = renderTemplate('myApp/home');
-			return this;
-		}
-	});
+    id: 'index',
 
-	global.IndexView = IndexView;
+    initialize: function() {
+      this.render();
+    },
 
-})(this);
+    render: function() {
+      LOG('::render::');
+      this.el.innerHTML = renderTemplate('myApp/home', 'IndexView');
+      return this;
+    }
+  });
+
+  views.IndexView = IndexView;
+
+})(this, this.Views);

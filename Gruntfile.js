@@ -189,9 +189,9 @@ module.exports = function(grunt) {
     // Developement tools
     //
     watch: {
-      jshint: {
+      scripts: {
         files: ['<%= dirs.js %><%= files.js %>', 'Gruntfile.js'],
-        tasks: 'jshint'
+        tasks: ['jshint', 'copy:js', 'copy:vendors', 'mince', 'jst', 'concat:js', 'env', (LOGGER ? 'logger' : 'nologger')]
       }
     }
   });

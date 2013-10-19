@@ -3,6 +3,7 @@
 //= require libs/logger
 //= require libs/template
 //= require_tree models
+//= require_tree views
 //
 
 /**
@@ -11,15 +12,16 @@
  * start it (app.boot)
  */
 
-(function(global, models) {
+(function(global, models, views) {
   'use strict';
 
   var LOG = LOGGER('app');
 
   function App(el) {
+    this.el = el;
 
-     // Object containing all the singletons model
-     // shared by all controls.
+    // Object containing all the singletons model
+    // shared by all controls.
     this.data = {};
   }
 
@@ -60,14 +62,12 @@
    * @interface
    * @chainable
    */
-  App.prototype.registerControls = function() {
+  App.prototype.createViews = function() {
     // Controls
-    LOG('::registerControls::');
-    //this
-      // Main
-      //.registerControl('clock', controls.Clock)
-      // Global controls
-      //.addGlobalControl('browse', controls.Browse)
+    LOG('::createViews::');
+
+    this.data.indexView  = new (views.IndexView)();
+    LOG('indexView.el:' + this.data.indexView.el);
     return this;
   };
 
@@ -97,7 +97,9 @@
    */
   App.prototype.init = function() {
     LOG('::boot::');
+
     this.createModels();
+    this.createViews();
 
     function success() {
       LOG('::success::');
@@ -123,4 +125,4 @@
 
   global.App = App;
 
-})(this, this.Models);
+})(this, this.Models, this.Views);
