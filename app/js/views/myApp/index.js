@@ -10,7 +10,7 @@
 
   var IndexView = Backbone.View.extend({
 
-    id: 'index',
+    el: '#index',
 
     initialize: function() {
       this.render();
@@ -18,7 +18,9 @@
 
     render: function() {
       LOG('::render::');
+      LOG("<el:" + this.el.innerHTML);
       this.el.innerHTML = renderTemplate('myApp/home', 'IndexView');
+      LOG(">el:" + this.el.innerHTML);
       return this;
     }
   });
