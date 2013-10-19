@@ -1,7 +1,7 @@
 // mincer directives processor are listed bellow
+//= require libs/logger
 //= require app
 //
-
 
 /**
  * Entry point of the application
@@ -18,12 +18,12 @@
 
   // Instantiate the main application
   // Export main application as a global
-  // Start the collecte tranport
   function createApp() {
     LOG('::createApp::');
     var el = document.getElementById('main');
-    app = global.app = new (global.App)(el);
+    app = new (global.App)(el);
     app.init();
+    global.app = app;
   }
 
   function clean() {

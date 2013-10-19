@@ -1,5 +1,8 @@
 // mincer directives processor are listed bellow
+//= require namespaces
+//= require libs/logger
 //= require libs/template
+//= require_tree models
 //
 
 /**
@@ -8,129 +11,116 @@
  * start it (app.boot)
  */
 
-(function(global) {
+(function(global, models) {
   'use strict';
 
   var LOG = LOGGER('app');
 
-  var app = {
+  function App(el) {
 
      // Object containing all the singletons model
      // shared by all controls.
-    data: {},
+    this.data = {};
+  }
 
-    /**
-     * Instantiate models in the `data` namespace.
-     *
-     * @method createModels
-     * @chainable
-     */
-    createModels: function() {
-      LOG('::createModels::');
-      return this;
-    },
+  /**
+   * Instantiate models in the `data` namespace.
+   *
+   * @method createModels
+   * @chainable
+   */
+  App.prototype.createModels = function() {
+    LOG('::createModels::');
 
-    bindModels: function() {
-      LOG('::bindModels::');
-      LOG('models binded');
-    },
+    this.data.myModel  = new (models.MyModel)();
 
-    /**
-     * Bind global listeners of different models to handle
-     * global and asynchronous events from the stream.
-     *
-     * @method bindListeners
-     */
-    bindListeners: function() {
-      LOG('::bindListeners::');
-      //this.data.system.on('low-battery', this.popup('shared/popup/battery', 'battery', 'long'), this);
-    },
-
-    /**
-     * Initalize the application by registering all navigable
-     * controls for the application.
-     *
-     * @interface
-     * @chainable
-     */
-    registerControls: function() {
-      // Controls
-      LOG('::registerControls::');
-      //this
-        // Main
-        //.registerControl('clock', controls.Clock)
-        // Global controls
-        //.addGlobalControl('browse', controls.Browse)
-      return this;
-    },
-
-    /**
-     * Fetch all data required by the application
-     */
-    fetch: function() {
-      LOG('::fetch::');
-/*      return Promise.when(
-        // static models
-        Promise.lazy(this.data.defects.fetch())
-      )
-        .fail(function() {
-          console.error('Error while fetching application data');
-        });*/
-    },
-
-    /**
-     * Init process of the main application
-     * First start the event source stream and start the
-     * install application and fetch all models.
-     * When these three process are done, free the installation
-     * and start on the first screen of the main application.
-     *
-     * @async
-     * @chainable
-     */
-    init: function() {
-      LOG('::boot::');
-      this.createModels();
-
-      function success() {
-        LOG('::success::');
-      }
-
-      function failure() {
-        console.error('Error while booting the application');
-      }
-
-      // 
-      Promise.chain(
-        this.fetch,
-        // bind models
-        this.bindModels
-      )
-        .context(this)
-        .then(success, failure, this)
-        .start();
-
-      return this;
-    }
+    return this;
   };
 
-  // Instantiate the main application
-  // Export main application as a global
-  // Start the collecte tranport
-  function createApp() {
-    LOG('::createApp::');
-    var el = document.getElementById('main');
-    app.init(el);
-  }
+  App.prototype.bindModels = function() {
+    LOG('::bindModels::');
+    LOG('models binded');
+  };
 
-  function clean() {
-    LOG('::clean::');
-    document.removeEventListener('DOMContentLoaded', createApp);
-    document.removeEventListener('DOMContentLoaded', clean);
-  }
+  /**
+   * Bind global listeners of different models to handle
+   * global and asynchronous events from the stream.
+   *
+   * @method bindListeners
+   */
+  App.prototype.bindListeners = function() {
+    LOG('::bindListeners::');
+    //this.data.system.on('low-battery', this.popup('shared/popup/battery', 'battery', 'long'), this);
+  };
 
-  // create application on DOM content loaded
-  document.addEventListener('DOMContentLoaded', createApp, false);
-  document.addEventListener('DOMContentLoaded', clean, false);
+  /**
+   * Initalize the application by registering all navigable
+   * controls for the application.
+   *
+   * @interface
+   * @chainable
+   */
+  App.prototype.registerControls = function() {
+    // Controls
+    LOG('::registerControls::');
+    //this
+      // Main
+      //.registerControl('clock', controls.Clock)
+      // Global controls
+      //.addGlobalControl('browse', controls.Browse)
+    return this;
+  };
 
-})(this);
+  /**
+   * Fetch all data required by the application
+   */
+  App.prototype.fetch = function() {
+    LOG('::fetch::');
+/*      return Promise.when(
+      // static models
+      Promise.lazy(this.data.defects.fetch())
+    )
+      .fail(function() {
+        console.error('Error while fetching application data');
+      });*/
+  };
+
+  /**
+   * Init process of the main application
+   * First start the event source stream and start the
+   * install application and fetch all models.
+   * When these three process are done, free the installation
+   * and start on the first screen of the main application.
+   *
+   * @async
+   * @chainable
+   */
+  App.prototype.init = function() {
+    LOG('::boot::');
+    this.createModels();
+
+    function success() {
+      LOG('::success::');
+    }
+
+    function failure() {
+      console.error('Error while booting the application');
+    }
+
+/*
+    // 
+    Promise.chain(
+      this.fetch,
+      // bind models
+      this.bindModels
+    )
+      .context(this)
+      .then(success, failure, this)
+      .start();
+*/
+    return this;
+  };
+
+  global.App = App;
+
+})(this, this.Models);

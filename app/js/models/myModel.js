@@ -1,11 +1,19 @@
 
-(function(global) {
+(function(global, models) {
   'use strict';
 
   var
     /*
-     * Logger for defects model
+     * Logger for my model
      */
-    LOG = LOGGER('myModel');
+     LOG = LOGGER('MyModel');
 
-})( this);
+  var MyModel = Backbone.Model.extend({
+    initialize: function(){
+      LOG('::initialize::');
+    }
+  });
+
+  models.MyModel = MyModel;
+
+})(this, this.Models);
